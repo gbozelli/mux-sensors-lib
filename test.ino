@@ -3,8 +3,7 @@
 // Designed to test all functionality on Arduino IDE
 
 // Pin definitions for 74HC4067 multiplexer
-const int S0 = 4;
-const int S1 = 5;
+
 const int S2 = 6;
 const int SIG = A0;
 
