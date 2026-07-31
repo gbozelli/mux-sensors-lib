@@ -2,14 +2,15 @@
 #include "src/sensor/sensor.h"
 
 // Pin definitions for 74HC4067 multiplexer
-const int PIN_S0 = 4;
+
 const int PIN_S1 = 5;
 const int PIN_S2 = 6;
 const int PIN_SIG = A0;
 
 // Create instances of Multiplexer and Sensor
-Multiplexer mux;
-Sensor sensor_handler;
+//mudanças de teste abaixo (Comentei 2 linhas)
+// Multiplexer mux;
+// Sensor sensor_handler;
 
 // Buffers for sensor data
 int raw_values[8];
