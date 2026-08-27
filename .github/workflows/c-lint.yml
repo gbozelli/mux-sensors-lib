@@ -1,0 +1,22 @@
+name: C Linting (clang-format)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: sudo apt-get install -y clang-format
+
+      - name: Run clang-format check
+        run: |
+          # Procura por todos os arquivos .c, .h e .ino e verifica a formatação
+          find . -name '*.c' -o -name '*.h' -o -name '*.ino' | xargs clang-format --Werror --dry-run

@@ -1,0 +1,28 @@
+name: C Unit Testing
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+
+      - name: Compile and Run Tests
+        run: |
+          # Exemplo básico: assume que existe um Makefile ou script de teste
+          # Ajuste conforme a estrutura do seu projeto
+          if [ -f Makefile ]; then
+            make test
+          else
+            echo "No Makefile found. Add your test execution logic here."
+            exit 1
+          fi

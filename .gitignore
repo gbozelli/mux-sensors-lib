@@ -1,0 +1,13 @@
+# Build results
+*.out
+*.exe
+*.o
+
+# Editor files
+.vscode/
+*.json
+!/.vscode/settings.json
+
+# OS files
+.DS_Store
+Thumbs.db

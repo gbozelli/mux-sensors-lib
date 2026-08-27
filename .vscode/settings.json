@@ -8,9 +8,10 @@
   "C_Cpp.default.defines": [],
   "C_Cpp.intelliSenseEngine": "default",
   "C_Cpp.errorSquiggles": "disabled",
-  "extensions.ignoreRecommendations": false,
+  "extensions.ignoreRecommendations": true,
   "files.exclude": {
     "**/.git": true,
     "**/node_modules": true
-  }
+  },
+  "editor.formatOnSave": true
 }

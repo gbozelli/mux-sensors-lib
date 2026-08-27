@@ -35,14 +35,18 @@ These pins can be reconfigured by modifying the constants in main.ino or by inst
 
 ## Installation
 
-1. Clone this repository into your Arduino libraries folder:
-   ```
-   ~/.arduino15/libraries/mux-sensors-lib/
-   ```
+1. Clone this repository.
 
-2. Restart Arduino IDE
+2. Open the project folder in VS Code.
 
-3. Verify installation by checking Sketch > Include Library menu
+## Development & Workflow
+
+This project uses standard C tools for quality and testing:
+
+- **Linting**: Automatically formats code on save (using `clang-format`). A GitHub Actions workflow runs a lint check on every push/PR.
+- **Testing**: A `Makefile` is provided to run unit tests.
+    - Run `make test` to compile and execute all files containing `test` in their name (e.g., `test_sensor.c`).
+    - A GitHub Actions workflow also automates testing on every push/PR.
 
 ## Usage
 
