@@ -8,7 +8,7 @@ extern "C" {
 #if defined(ARDUINO) && ARDUINO > 0
 #include <Arduino.h>
 #else
-#include "../../Arduino.h"
+#include "Arduino.h"
 #endif
 
 #define MUX_NUM_CHANNELS 8
