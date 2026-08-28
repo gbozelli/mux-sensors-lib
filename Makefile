@@ -26,6 +26,6 @@ test: all
 	done
 
 clean:
-	rm -f *.out
+	rm -f *.out src/test/*.out
 
 .PHONY: all test clean

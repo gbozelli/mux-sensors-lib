@@ -63,16 +63,22 @@ Ensure your repository follows the Arduino library standard structure:
 ```
 mux-sensors-lib/
 ├── library.properties       (Required)
-├── README.md               (Required)
-├── main.ino                (Example sketch)
-├── test.ino                (Test sketch)
+├── keywords.txt             (Required)
+├── README.md                (Required)
+├── LICENSE                  (Required)
+├── examples/
+│   ├── BasicRead/
+│   │   └── BasicRead.ino
+│   └── DiagnosticTest/
+│       └── DiagnosticTest.ino
 ├── src/
+│   ├── mux_sensors_lib.h
 │   ├── mux/
 │   │   ├── multiplexer.h
-│   │   └── multiplexer.cpp
+│   │   └── multiplexer.c
 │   └── sensor/
 │       ├── sensor.h
-│       └── sensor.cpp
+│       └── sensor.c
 └── docs/
     └── (Reference documents)
 ```
@@ -81,7 +87,7 @@ Requirements:
 - library.properties must be in root directory
 - README.md must be in root directory
 - Header files (.h) in appropriate subdirectories
-- Implementation files (.cpp) with corresponding headers
+- Implementation files (.c) with corresponding headers
 
 ### Step 4: Test Installation Locally
 

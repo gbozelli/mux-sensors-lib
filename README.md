@@ -31,7 +31,7 @@ Default pin mapping:
 - S2 (Address Line 2): GPIO 6
 - SIG (Signal Output): A0 (analog pin)
 
-These pins can be reconfigured by modifying the constants in main.ino or by instantiating the Multiplexer class with custom pin assignments.
+These pins can be reconfigured by passing custom pin assignments to `multiplexer_init()`.
 
 ## Installation
 
@@ -46,26 +46,14 @@ Alternatively, you can download the latest release as a ZIP file and import it v
 
 Include the library in your sketch:
 
-```cpp
+```c
 #include <mux_sensors_lib.h>
 ```
-
-## Development & Workflow
-
-This project uses standard C tools for quality and testing:
-
-- **Linting**: Automatically formats code on save (using `clang-format`). A GitHub Actions workflow runs a lint check on every push/PR.
-- **Testing**: A `Makefile` is provided to run unit tests.
-    - Run `make test` to compile and execute all files containing `test` in their name (e.g., `test_sensor.c`).
-    - A GitHub Actions workflow also automates testing on every push/PR.
-
-## Usage
 
 ### Basic Example
 
 ```c
-#include "src/mux/multiplexer.h"
-#include "src/sensor/sensor.h"
+#include <mux_sensors_lib.h>
 
 Multiplexer mux;
 Sensor sensor;
@@ -75,25 +63,25 @@ int normalized_values[8];
 
 void setup() {
   Serial.begin(9600);
-  
+
   // Initialize multiplexer and sensor
   mux = multiplexer_init(4, 5, 6, A0);
   sensor = sensor_init(0, 255);
-  
+
   multiplexer_begin(&mux);
 }
 
 void loop() {
   multiplexer_read_all(&mux, raw_values);
   sensor_normalize_buffer(&sensor, raw_values, normalized_values);
-  
+
   for (int i = 0; i < 8; i++) {
     Serial.print("Channel ");
     Serial.print(i);
     Serial.print(": ");
     Serial.println(normalized_values[i]);
   }
-  
+
   delay(500);
 }
 ```
@@ -111,12 +99,22 @@ Sensor sensor = sensor_init(0, 255);           // Default range 0-255
 sensor_set_range(&sensor, 0, 1023);            // Change to 0-1023
 ```
 
+## Development & Workflow
+
+This project uses standard C tools for quality and testing:
+
+- **Linting**: Automatically formats code on save (using `clang-format`). A GitHub Actions workflow runs a lint check on every push/PR.
+- **Testing**: A `Makefile` is provided to run unit tests.
+    - Run `make test` to compile and execute all files containing `test` in their name (e.g., `test_sensor.c`).
+    - A GitHub Actions workflow also automates testing on every push/PR.
+
 ## Testing
 
-Use the included test.ino for comprehensive functional validation:
-1. Upload test.ino to your Arduino board
-2. Open Serial Monitor (9600 baud)
-3. Observe diagnostic output and test results
+Use the included DiagnosticTest example for comprehensive functional validation:
+1. Open **File** > **Examples** > **mux-sensors-lib** > **DiagnosticTest**
+2. Upload to your Arduino board
+3. Open Serial Monitor (9600 baud)
+4. Observe diagnostic output and test results
 
 The test suite includes:
 - Pin configuration verification
@@ -168,18 +166,30 @@ typedef struct {
 
 ```
 mux-sensors-lib/
-├── main.ino              # Application entry point
-├── test.ino              # Comprehensive test suite
-├── library.properties    # Library metadata
-├── README.md             # This file
-├── docs/                 # Documentation and references
-└── src/
-    ├── mux/
-    │   ├── multiplexer.h  # Multiplexer API definition
-    │   └── multiplexer.c  # Multiplexer implementation
-    └── sensor/
-        ├── sensor.h       # Sensor API definition
-        └── sensor.c       # Sensor implementation
+├── .clang-format             # Code formatting rules (Google style)
+├── .github/workflows/        # CI: lint + test automation
+├── library.properties        # Arduino Library Manager metadata
+├── keywords.txt              # Syntax highlighting for Arduino IDE
+├── Makefile                  # Native C test runner
+├── README.md                 # This file
+├── LICENSE                   # MIT License
+├── examples/
+│   ├── BasicRead/            # Minimal usage example
+│   │   └── BasicRead.ino
+│   └── DiagnosticTest/       # Full diagnostic test suite
+│       └── DiagnosticTest.ino
+├── src/
+│   ├── mux_sensors_lib.h     # Main library header
+│   ├── mux/
+│   │   ├── multiplexer.h     # Multiplexer API definition
+│   │   └── multiplexer.c     # Multiplexer implementation
+│   └── sensor/
+│       ├── sensor.h          # Sensor API definition
+│       └── sensor.c          # Sensor implementation
+├── test/
+│   └── mocks/
+│       └── Arduino.h         # Mock Arduino.h for native testing
+└── docs/                     # Documentation and references
 ```
 
 ## Technical Specifications
@@ -213,7 +223,7 @@ mux-sensors-lib/
 **Issue: Library not recognized**
 - Verify library installed in correct folder
 - Restart Arduino IDE
-- Check that includes use correct relative paths
+- Ensure include uses `<mux_sensors_lib.h>` (angle brackets)
 
 ## Contributing
 
@@ -224,7 +234,7 @@ Contributions are welcome. Please ensure:
 
 ## License
 
-This project is provided as-is for educational and commercial use. Refer to LICENSE file for details.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## References
 

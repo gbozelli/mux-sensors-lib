@@ -4,4 +4,4 @@
 #include "mux/multiplexer.h"
 #include "sensor/sensor.h"
 
-#endif // MUX_SENSORS_LIB_H
+#endif  // MUX_SENSORS_LIB_H

@@ -1,5 +1,4 @@
-#include "src/mux/multiplexer.h"
-#include "src/sensor/sensor.h"
+#include <mux_sensors_lib.h>
 
 // Pin definitions for 74HC4067 multiplexer
 const int PIN_S0 = 4;

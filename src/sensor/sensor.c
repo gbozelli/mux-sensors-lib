@@ -12,8 +12,6 @@ Sensor sensor_init(int min_val, int max_val) {
     return sensor;
 }
 
-// teste
-
 void sensor_set_range(Sensor *sensor, int min_val, int max_val) {
     sensor->min_value = min_val;
     sensor->max_value = max_val;
