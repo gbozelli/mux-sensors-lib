@@ -127,21 +127,28 @@ Current project structure:
 
 ```
 mux-sensors-lib/
-├── main.ino                    # Modular application example
-├── test.ino                    # Comprehensive test suite
-├── library.properties          # Library metadata
+├── library.properties          # Arduino Library Manager metadata
+├── keywords.txt                # Syntax highlighting for Arduino IDE
+├── Makefile                    # Native C test runner
 ├── README.md                   # Technical documentation
-├── PUBLISHING.md               # Publication guide
-├── docs/
-│   ├── Estudo multiplexação.pdf
-│   └── Trabalho seguidor spirit.pdf
-└── src/
-    ├── mux/
-    │   ├── multiplexer.h       # Multiplexer API definition
-    │   └── multiplexer.c       # Multiplexer implementation
-    └── sensor/
-        ├── sensor.h            # Sensor API definition
-        └── sensor.c            # Sensor implementation
+├── LICENSE                     # MIT License
+├── examples/
+│   ├── BasicRead/              # Minimal usage example
+│   │   └── BasicRead.ino
+│   └── DiagnosticTest/         # Full diagnostic test suite
+│       └── DiagnosticTest.ino
+├── src/
+│   ├── mux_sensors_lib.h       # Main library header
+│   ├── mux/
+│   │   ├── multiplexer.h       # Multiplexer API definition
+│   │   └── multiplexer.c       # Multiplexer implementation
+│   └── sensor/
+│       ├── sensor.h            # Sensor API definition
+│       └── sensor.c            # Sensor implementation
+├── test/
+│   └── mocks/
+│       └── Arduino.h           # Mock Arduino.h for native testing
+└── docs/                       # Documentation and references
 ```
 
 ## Technical Specifications
@@ -198,10 +205,10 @@ sensor_normalize_buffer(&sensor, raw_buffer, normalized_buffer);
 
 ## Testing Recommendations
 
-1. Upload test.ino to verify hardware setup
+1. Open **File** > **Examples** > **mux-sensors-lib** > **DiagnosticTest** and upload to verify hardware setup
 2. Check Serial Monitor output at 9600 baud
 3. Verify all 8 channels return expected sensor readings
-4. Upload main.ino for production use
+4. Open **File** > **Examples** > **mux-sensors-lib** > **BasicRead** for production use
 5. Monitor serial output for normalization accuracy
 6. Test with target sensor hardware
 

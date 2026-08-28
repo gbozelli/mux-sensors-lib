@@ -22,15 +22,15 @@ Sensor 1 ──→  Multiplexer Channel 1
 ### Testing Setup
 
 1. Open Arduino IDE
-2. Copy entire mux-sensors-lib folder to: `Documents/Arduino/libraries/`
-3. Restart Arduino IDE
-4. Open: File > Examples > mux-sensors-lib > test
-5. Select your Arduino board: Tools > Board
-6. Select port: Tools > Port
-7. Click Upload button
-8. Open Serial Monitor: Tools > Serial Monitor
-9. Set baud rate to 9600
-10. Observe test output
+2. Install the library via **Sketch** > **Include Library** > **Manage Libraries...** > search "mux-sensors-lib"
+   - Or download the ZIP and use **Sketch** > **Include Library** > **Add .ZIP Library...**
+3. Open: **File** > **Examples** > **mux-sensors-lib** > **DiagnosticTest**
+4. Select your Arduino board: **Tools** > **Board**
+5. Select port: **Tools** > **Port**
+6. Click Upload button
+7. Open Serial Monitor: **Tools** > **Serial Monitor**
+8. Set baud rate to 9600
+9. Observe test output
 
 Expected output shows diagnostic information, channel readings, and normalization results.
 
@@ -39,8 +39,7 @@ Expected output shows diagnostic information, channel readings, and normalizatio
 Create a new sketch:
 
 ```c
-#include "src/mux/multiplexer.h"
-#include "src/sensor/sensor.h"
+#include <mux_sensors_lib.h>
 
 Multiplexer mux;
 Sensor sensor;
@@ -118,13 +117,13 @@ int value = multiplexer_read_channel(&mux, 3);  // Read only channel 3
 
 - Full README: See README.md
 - API Reference: See README.md API Reference section
-- Publication Guide: See PUBLISHING.md
-- Implementation Details: See IMPLEMENTATION_SUMMARY.md
+- Publication Guide: See docs/PUBLISHING.md
+- Implementation Details: See docs/IMPLEMENTATION_SUMMARY.md
 
 ## Next Steps
 
-1. Test with test.ino
-2. Integrate into your project using main.ino as template
+1. Run the DiagnosticTest example to verify hardware setup
+2. Integrate into your project using BasicRead as a template
 3. Modify pin configuration as needed
 4. Adjust normalization range for your sensors
 5. Deploy to your application
@@ -133,6 +132,6 @@ int value = multiplexer_read_channel(&mux, 3);  // Read only channel 3
 
 For issues or questions:
 1. Check README.md troubleshooting section
-2. Review test.ino diagnostic output
-3. Check PUBLISHING.md for library-related questions
+2. Review the DiagnosticTest example output
+3. Check docs/PUBLISHING.md for library-related questions
 4. Consult CD74HC4067 datasheet in docs/

@@ -132,7 +132,7 @@ This allows the library to be used in C++ projects without issues.
 
 ## Examples
 
-See `main.ino` and `test.ino` for complete working examples using the C API.
+See `examples/BasicRead/BasicRead.ino` and `examples/DiagnosticTest/DiagnosticTest.ino` for complete working examples using the C API.
 
 ## Troubleshooting
 
