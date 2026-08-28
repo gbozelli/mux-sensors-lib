@@ -5,7 +5,11 @@
 extern "C" {
 #endif
 
+#if !defined(ARDUINO) || ARDUINO > 0
 #include <Arduino.h>
+#else
+#include "Arduino.h"
+#endif
 
 #define MUX_NUM_CHANNELS 8
 #define MUX_ADC_MAX 1023

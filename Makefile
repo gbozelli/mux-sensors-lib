@@ -1,7 +1,8 @@
 # Makefile robusto para compilar e rodar testes em C
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Isrc/mux -Isrc/sensor -I$(PWD)
+# Adiciona -DARDUINO=0 para desabilitar include de Arduino.h se definido no código
+CFLAGS = -Wall -Wextra -Isrc/mux -Isrc/sensor -I$(PWD) -DARDUINO=0
 # Exclui arquivos com problemas ou não C puro
 SRC_LIB = $(filter-out src/sensor/test.c, $(wildcard src/mux/*.c src/sensor/*.c))
 # Procura testes na raiz e em src/test
