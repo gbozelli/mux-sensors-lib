@@ -13,10 +13,10 @@ extern "C" {
 #define MUX_SETTLING_TIME 100
 
 typedef struct {
-  int pin_s0;
-  int pin_s1;
-  int pin_s2;
-  int pin_sig;
+    int pin_s0;
+    int pin_s1;
+    int pin_s2;
+    int pin_sig;
 } Multiplexer;
 
 Multiplexer multiplexer_init(int s0, int s1, int s2, int sig);
@@ -29,4 +29,4 @@ void multiplexer_set_channel(Multiplexer* mux, int channel);
 }
 #endif
 
-#endif // MULTIPLEXER_H
+#endif  // MULTIPLEXER_H

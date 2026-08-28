@@ -10,9 +10,9 @@ extern "C" {
 #define SENSOR_NUM_SENSORS 8
 
 typedef struct {
-  int buffer[SENSOR_NUM_SENSORS];
-  int min_value;
-  int max_value;
+    int buffer[SENSOR_NUM_SENSORS];
+    int min_value;
+    int max_value;
 } Sensor;
 
 Sensor sensor_init(int min_val, int max_val);
@@ -26,4 +26,4 @@ void sensor_set_value(Sensor* sensor, int index, int value);
 }
 #endif
 
-#endif // SENSOR_H
+#endif  // SENSOR_H
