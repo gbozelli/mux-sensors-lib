@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#if !defined(ARDUINO) || ARDUINO > 0
+#if defined(ARDUINO) && ARDUINO > 0
 #include <Arduino.h>
 #else
 #include "Arduino.h"
