@@ -1,0 +1,36 @@
+#######################################
+# Syntax Coloring Map For mux-sensors-lib
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Multiplexer	KEYWORD1
+Sensor	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+multiplexer_init	KEYWORD2
+multiplexer_begin	KEYWORD2
+multiplexer_read_channel	KEYWORD2
+multiplexer_read_all	KEYWORD2
+multiplexer_set_channel	KEYWORD2
+sensor_init	KEYWORD2
+sensor_set_range	KEYWORD2
+sensor_normalize	KEYWORD2
+sensor_normalize_buffer	KEYWORD2
+sensor_get_value	KEYWORD2
+sensor_set_value	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+MUX_NUM_CHANNELS	LITERAL1
+MUX_ADC_MAX	LITERAL1
+MUX_ADC_MIN	LITERAL1
+MUX_SETTLING_TIME	LITERAL1
+SENSOR_NUM_SENSORS	LITERAL1

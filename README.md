@@ -35,9 +35,20 @@ These pins can be reconfigured by modifying the constants in main.ino or by inst
 
 ## Installation
 
-1. Clone this repository.
+1. Open the Arduino IDE.
+2. Go to **Sketch** > **Include Library** > **Manage Libraries...**
+3. Search for "mux-sensors-lib".
+4. Click **Install**.
 
-2. Open the project folder in VS Code.
+Alternatively, you can download the latest release as a ZIP file and import it via **Sketch** > **Include Library** > **Add .ZIP Library...**.
+
+## Usage
+
+Include the library in your sketch:
+
+```cpp
+#include <mux_sensors_lib.h>
+```
 
 ## Development & Workflow
 
