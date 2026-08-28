@@ -8,7 +8,7 @@ extern "C" {
 #if defined(ARDUINO) && ARDUINO > 0
 #include <Arduino.h>
 #else
-#include "Arduino.h"
+#include "../../Arduino.h"
 #endif
 
 #define SENSOR_NUM_SENSORS 8
