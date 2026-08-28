@@ -55,26 +55,33 @@ Include the library in your sketch:
 ```c
 #include <mux_sensors_lib.h>
 
-Multiplexer mux;
-Sensor sensor;
+Multiplexer mux;       // Struct that stores the multiplexer pin config
+Sensor sensor;         // Struct that stores the normalization range
 
-int raw_values[8];
-int normalized_values[8];
+int raw_values[8];         // Array to hold raw ADC readings (0-1023)
+int normalized_values[8];  // Array to hold normalized values
 
 void setup() {
   Serial.begin(9600);
 
-  // Initialize multiplexer and sensor
+  // Create the multiplexer: pins S0=4, S1=5, S2=6, signal=A0
   mux = multiplexer_init(4, 5, 6, A0);
+
+  // Create the sensor with normalization range 0-255
   sensor = sensor_init(0, 255);
 
-  multiplexer_begin(&mux);
+  // Set up the GPIO pins (must be called once in setup)
+  multiplexer_begin(&mux);  // &mux = "address of mux" (pointer)
 }
 
 void loop() {
+  // Read all 8 channels and store in raw_values[]
   multiplexer_read_all(&mux, raw_values);
+
+  // Convert raw readings (0-1023) to normalized range (0-255)
   sensor_normalize_buffer(&sensor, raw_values, normalized_values);
 
+  // Print each channel value
   for (int i = 0; i < 8; i++) {
     Serial.print("Channel ");
     Serial.print(i);
@@ -89,24 +96,45 @@ void loop() {
 ### Reading a Single Channel
 
 ```c
-int value = multiplexer_read_channel(&mux, 0);  // Read channel 0
+// Read only channel 0 (returns a value between 0 and 1023)
+int value = multiplexer_read_channel(&mux, 0);
 ```
 
 ### Configuring Normalization Range
 
 ```c
-Sensor sensor = sensor_init(0, 255);           // Default range 0-255
-sensor_set_range(&sensor, 0, 1023);            // Change to 0-1023
+// Create sensor with range 0-255 (default)
+Sensor sensor = sensor_init(0, 255);
+
+// Later, change the range to 0-1023 if needed
+sensor_set_range(&sensor, 0, 1023);
 ```
 
 ## Development & Workflow
 
-This project uses standard C tools for quality and testing:
+This project uses two automated checks that run on every push and pull request:
 
-- **Linting**: Automatically formats code on save (using `clang-format`). A GitHub Actions workflow runs a lint check on every push/PR.
-- **Testing**: A `Makefile` is provided to run unit tests.
-    - Run `make test` to compile and execute all files containing `test` in their name (e.g., `test_sensor.c`).
-    - A GitHub Actions workflow also automates testing on every push/PR.
+### Code Formatting (clang-format)
+
+All `.c`, `.h`, and `.ino` files must follow the formatting rules defined in `.clang-format`. If the CI check fails, you can fix it by running:
+
+```bash
+# Check which files have formatting issues
+find . -name '*.c' -o -name '*.h' -o -name '*.ino' | xargs clang-format --dry-run
+
+# Auto-fix all files
+find . -name '*.c' -o -name '*.h' -o -name '*.ino' | xargs clang-format -i
+```
+
+### Unit Tests (make test)
+
+The project includes C tests that run on your computer (without Arduino hardware). To run them:
+
+```bash
+make test
+```
+
+If you want to add new tests, edit `src/test/test.c` — the file has comments explaining the pattern.
 
 ## Testing
 
@@ -227,10 +255,12 @@ mux-sensors-lib/
 
 ## Contributing
 
-Contributions are welcome. Please ensure:
-- Code follows existing style conventions
-- New features include corresponding test cases
-- Documentation is updated alongside code changes
+Contributions are welcome! Before submitting a pull request, please check:
+
+1. **Formatting**: Run `clang-format -i` on your files (or the CI will fail)
+2. **Tests pass**: Run `make test` and make sure all tests pass
+3. **Comments**: Add comments to any new code explaining what it does
+4. **Documentation**: Update this README if your change adds new functions
 
 ## License
 
