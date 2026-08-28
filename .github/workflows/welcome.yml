@@ -1,0 +1,32 @@
+name: Bem-vindo(a)
+
+on:
+  pull_request_target:
+    types: [opened]
+  issues:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          pr-message: |
+            Olá! 👋 Obrigado por abrir o seu primeiro Pull Request neste repositório!
+            
+            A sua contribuição é muito importante para nós. Para que possamos revisar e aceitar o seu código o mais rápido possível, por favor, certifique-se de que:
+            
+            - [ ] Você leu o nosso guia [CONTRIBUTING.md](CONTRIBUTING.md).
+            - [ ] Você rodou o `make test` e todos os testes passaram.
+            - [ ] Você formatou o código (a Action de C Linting vai checar isso automaticamente).
+            
+            Se você for um(a) iniciante e estiver com alguma dúvida, não se preocupe! Só deixar um comentário aqui que a nossa equipe vai te ajudar. Muito sucesso! 🚀
+          issue-message: |
+            Olá! 👋 Obrigado por abrir a sua primeira Issue neste repositório!
+            
+            Se você estiver reportando um bug, tente fornecer o máximo de detalhes possível (como passos para reproduzir, comportamento esperado e comportamento atual).
+            Se for uma dúvida sobre como usar a biblioteca, lembre-se de conferir também o nosso guia rápido: [QUICKSTART_pt-BR.md](docs/QUICKSTART_pt-BR.md).
+            
+            Logo mais alguém da equipe irá te responder! 🚀
