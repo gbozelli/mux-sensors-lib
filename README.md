@@ -1,5 +1,7 @@
 # mux-sensors-lib
 
+> 🇧🇷 **Aviso para Brasileiros e Iniciantes:** Temos documentação traduzida e detalhada para ajudar você! Leia o [Guia Rápido (QUICKSTART) em Português](docs/QUICKSTART_pt-BR.md) e o nosso [Guia de Contribuição](CONTRIBUTING.md).
+
 A modular Arduino library for interfacing with analog sensors through CD74HC4067 analog multiplexers. This library provides efficient handling of up to 8 sensor channels using a single ADC pin, reducing hardware complexity and enabling scalable sensor networks.
 
 ## Overview
@@ -254,6 +256,8 @@ mux-sensors-lib/
 - Ensure include uses `<mux_sensors_lib.h>` (angle brackets)
 
 ## Contributing
+
+> 🇧🇷 **Iniciante?** Nós temos um guia passo-a-passo ensinando como fazer um fork, usar o git e abrir seu primeiro Pull Request. Leia o **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 Contributions are welcome! Before submitting a pull request, please check:
 
